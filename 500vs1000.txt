@@ -1,0 +1,42 @@
+# Comparação de Resultados: 500 vs 1000 Imagens
+
+## Resumo dos Experimentos
+
+Foram realizados dois experimentos de classificação de imagens utilizando o dataset Intel Image Classification, variando a quantidade de imagens utilizadas no treinamento e validação do modelo:
+
+- **Experimento 1:** 500 imagens (400 treino, 100 validação)
+- **Experimento 2:** 1000 imagens (800 treino, 200 validação)
+
+## Resultados Obtidos
+
+| Métrica         | 500 imagens | 1000 imagens |
+|-----------------|-------------|--------------|
+| Acurácia        | 0.64        | 0.67         |
+| F1-score        | 0.62        | 0.67         |
+| Validação       | 100         | 200          |
+
+### Relatório de Classificação (1000 imagens)
+- **Classes com melhor desempenho:**
+  - forest: F1-score 0.92
+  - street: F1-score 0.75
+  - glacier: F1-score 0.76
+- **Classes com mais dificuldade:**
+  - mountain: F1-score 0.45
+  - sea: F1-score 0.56
+
+## Análise Crítica
+
+- O aumento do número de imagens de 500 para 1000 trouxe uma melhora perceptível na acurácia e no F1-score do modelo.
+- Classes como "forest" e "street" apresentaram desempenho excelente, enquanto "mountain" e "sea" ainda apresentam confusões, possivelmente por similaridade visual ou menor quantidade de exemplos.
+- O modelo ficou mais robusto e equilibrado com mais dados, mostrando a importância de conjuntos de dados maiores para o aprendizado de redes neurais.
+
+## Sugestões de Melhoria
+
+- Utilizar ainda mais imagens, se possível, para melhorar o desempenho geral.
+- Aplicar técnicas de data augmentation para aumentar a variedade das imagens de treino.
+- Testar modelos mais complexos ou transfer learning (ex: ResNet pré-treinada).
+- Ajustar hiperparâmetros como taxa de aprendizado, número de épocas, etc.
+
+## Conclusão
+
+Aumentar a quantidade de dados disponíveis para o treinamento do modelo resultou em uma melhora significativa nas métricas de avaliação. Isso reforça a importância de conjuntos de dados maiores e mais variados para tarefas de classificação de imagens em Deep Learning. 
