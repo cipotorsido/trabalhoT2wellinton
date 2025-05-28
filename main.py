@@ -14,7 +14,7 @@ from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classifi
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Usando dispositivo: {DEVICE}")
 
-DATA_DIR = 'data_subset/train' # Ou data/seg_train/seg_train, caso queria usar o dataset completo
+DATA_DIR = 'data_subset/train' # Ou data/seg_train/seg_train, caso queira usar o dataset completo
 BATCH_SIZE = 32
 IMG_SIZE = 150
 
