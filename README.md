@@ -49,4 +49,25 @@ Atv_T2/
 
 ## Observações
 - É necessário ter uma conta no Kaggle para baixar a base de dados.
-- O pipeline pode ser adaptado para outras bases de imagens com pequenas modificações. 
+- O pipeline pode ser adaptado para outras bases de imagens com pequenas modificações.
+
+## playground.py - Testando sua IA com imagens individuais
+
+O arquivo `playground.py` permite treinar o modelo do zero e, ao final, testar a classificação de qualquer imagem que você escolher.
+
+### Como funciona:
+1. O script carrega e pré-processa o subconjunto de imagens em `data_subset/train/`.
+2. Treina o modelo (CNN) por 10 épocas.
+3. Após o treinamento, pede para você digitar o caminho de uma imagem para testar.
+4. O modelo faz a predição e mostra na tela a classe prevista para a imagem.
+
+### Como usar:
+1. Execute o script:
+   ```bash
+   python playground.py
+   ```
+2. Aguarde o treinamento terminar.
+3. Quando solicitado, digite o caminho da imagem que deseja testar (pode ser o caminho completo ou apenas o nome do arquivo, se estiver na mesma pasta do script).
+4. Veja a classe prevista pelo modelo!
+
+**Obs:** O script sempre treina o modelo do zero, então pode demorar alguns minutos para cada teste. 
