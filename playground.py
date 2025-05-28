@@ -11,9 +11,7 @@ import numpy as np
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 DATA_DIR = 'data_subset/train'
-BATCH_SIZE = 32
 IMG_SIZE = 150
-EPOCHS = 10
 
 transform = transforms.Compose([
     transforms.Resize((IMG_SIZE, IMG_SIZE)),
@@ -23,14 +21,6 @@ transform = transforms.Compose([
 
 dataset = ImageFolder(DATA_DIR, transform=transform)
 num_classes = len(dataset.classes)
-
-total_size = len(dataset)
-val_size = int(0.2 * total_size)
-train_size = total_size - val_size
-train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
-
-train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes):
@@ -59,27 +49,10 @@ class SimpleCNN(nn.Module):
         x = self.classifier(x)
         return x
 
+# Carregar o modelo salvo
 model = SimpleCNN(num_classes).to(DEVICE)
-
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-print(f"Treinando modelo do zero com {train_size} imagens...")
-for epoch in range(EPOCHS):
-    model.train()
-    running_loss = 0.0
-    for images, labels in train_loader:
-        images, labels = images.to(DEVICE), labels.to(DEVICE)
-        optimizer.zero_grad()
-        outputs = model(images)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
-        running_loss += loss.item() * images.size(0)
-    epoch_loss = running_loss / train_size
-    print(f"Época {epoch+1}/{EPOCHS} - Loss treino: {epoch_loss:.4f}")
-
-print("Treinamento concluído!")
+model.load_state_dict(torch.load("modelo_treinado.pth"))
+model.eval()  # Coloca o modelo em modo de avaliação
 
 def predict_image(image_path, model, transform, class_names, device):
     img = Image.open(image_path).convert('RGB')

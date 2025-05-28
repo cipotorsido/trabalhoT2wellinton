@@ -102,6 +102,9 @@ acc = accuracy_score(y_true, y_pred)
 f1 = f1_score(y_true, y_pred, average='weighted')
 cm = confusion_matrix(y_true, y_pred)
 
+torch.save(model.state_dict(), "modelo_treinado.pth")
+print("Modelo salvo em modelo_treinado.pth")
+
 print(f"Acurácia na validação: {acc:.4f}")
 print(f"F1-score na validação: {f1:.4f}")
 print("Matriz de confusão:")

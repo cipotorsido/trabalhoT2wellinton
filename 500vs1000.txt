@@ -24,18 +24,6 @@ Foram realizados dois experimentos de classificação de imagens utilizando o da
   - mountain: F1-score 0.45
   - sea: F1-score 0.56
 
-## Análise Crítica
-
-- O aumento do número de imagens de 500 para 1000 trouxe uma melhora perceptível na acurácia e no F1-score do modelo.
-- Classes como "forest" e "street" apresentaram desempenho excelente, enquanto "mountain" e "sea" ainda apresentam confusões, possivelmente por similaridade visual ou menor quantidade de exemplos.
-- O modelo ficou mais robusto e equilibrado com mais dados, mostrando a importância de conjuntos de dados maiores para o aprendizado de redes neurais.
-
-## Sugestões de Melhoria
-
-- Utilizar ainda mais imagens, se possível, para melhorar o desempenho geral.
-- Aplicar técnicas de data augmentation para aumentar a variedade das imagens de treino.
-- Testar modelos mais complexos ou transfer learning (ex: ResNet pré-treinada).
-- Ajustar hiperparâmetros como taxa de aprendizado, número de épocas, etc.
 
 ## Conclusão
 
