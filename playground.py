@@ -49,11 +49,9 @@ class SimpleCNN(nn.Module):
         x = self.classifier(x)
         return x
 
-# Carregar o modelo salvo
 model = SimpleCNN(num_classes).to(DEVICE)
 model.load_state_dict(torch.load("modelo_treinado.pth"))
-model.eval()  # Coloca o modelo em modo de avaliação
-
+model.eval()
 def predict_image(image_path, model, transform, class_names, device):
     img = Image.open(image_path).convert('RGB')
     img_tensor = transform(img).unsqueeze(0).to(device)
