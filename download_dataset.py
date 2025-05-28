@@ -2,7 +2,6 @@ import os
 from kaggle.api.kaggle_api_extended import KaggleApi
 import zipfile
 
-# Inicializa a API do Kaggle
 def download_and_extract():
     api = KaggleApi()
     api.authenticate()

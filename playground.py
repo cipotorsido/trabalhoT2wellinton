@@ -9,14 +9,12 @@ from torch.utils.data import DataLoader, random_split
 from PIL import Image
 import numpy as np
 
-# Configurações
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 DATA_DIR = 'data_subset/train'
 BATCH_SIZE = 32
 IMG_SIZE = 150
 EPOCHS = 10
 
-# Pré-processamento
 transform = transforms.Compose([
     transforms.Resize((IMG_SIZE, IMG_SIZE)),
     transforms.ToTensor(),
@@ -26,7 +24,6 @@ transform = transforms.Compose([
 dataset = ImageFolder(DATA_DIR, transform=transform)
 num_classes = len(dataset.classes)
 
-# Divisão treino/validação
 total_size = len(dataset)
 val_size = int(0.2 * total_size)
 train_size = total_size - val_size
@@ -35,7 +32,6 @@ train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
-# Modelo
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes):
         super(SimpleCNN, self).__init__()
@@ -65,7 +61,6 @@ class SimpleCNN(nn.Module):
 
 model = SimpleCNN(num_classes).to(DEVICE)
 
-# Treinamento
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -86,7 +81,6 @@ for epoch in range(EPOCHS):
 
 print("Treinamento concluído!")
 
-# Função de predição
 def predict_image(image_path, model, transform, class_names, device):
     img = Image.open(image_path).convert('RGB')
     img_tensor = transform(img).unsqueeze(0).to(device)
@@ -96,7 +90,6 @@ def predict_image(image_path, model, transform, class_names, device):
         _, pred = torch.max(output, 1)
     return class_names[pred.item()]
 
-# Teste com uma imagem escolhida pelo usuário
 if __name__ == "__main__":
     img_path = input("Digite o caminho da imagem para testar: ")
     resultado = predict_image(img_path, model, transform, dataset.classes, DEVICE)

@@ -11,12 +11,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
 
-# Verifica se há GPU disponível
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Usando dispositivo: {DEVICE}")
 
-# 1. Carregamento e pré-processamento dos dados
-DATA_DIR = 'data_subset/train'
+DATA_DIR = 'data_subset/train' # Ou data/seg_train/seg_train, caso queria usar o dataset completo
 BATCH_SIZE = 32
 IMG_SIZE = 150
 
@@ -28,10 +26,9 @@ transform = transforms.Compose([
 
 dataset = ImageFolder(DATA_DIR, transform=transform)
 
-# Divisão treino/validação (80% treino, 20% validação)
 total_size = len(dataset)
-val_size = int(0.2 * total_size)
-train_size = total_size - val_size
+val_size = int(0.2 * total_size) #20% de validação
+train_size = total_size - val_size #80% de treino
 train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
 
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
@@ -41,7 +38,6 @@ print(f"Total de imagens: {total_size}")
 print(f"Treino: {train_size} | Validação: {val_size}")
 print(f"Classes: {dataset.classes}")
 
-# 2. Definição do modelo (CNN simples)
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes):
         super(SimpleCNN, self).__init__()
@@ -91,7 +87,6 @@ for epoch in range(EPOCHS):
     epoch_loss = running_loss / train_size
     print(f"Época {epoch+1}/{EPOCHS} - Loss treino: {epoch_loss:.4f}")
 
-# 4. Avaliação do modelo
 model.eval()
 y_true = []
 y_pred = []
@@ -113,6 +108,3 @@ print("Matriz de confusão:")
 print(cm)
 print("Relatório de classificação:")
 print(classification_report(y_true, y_pred, target_names=dataset.classes))
-
-# 5. Análise crítica dos resultados
-# (Sugestão: analisar overfitting, desempenho por classe, possíveis melhorias) 

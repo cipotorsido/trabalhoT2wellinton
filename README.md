@@ -19,11 +19,13 @@ Este projeto tem como objetivo construir um pipeline completo de classificação
 ```
 Atv_T2/
 │
-├── main.py           # Script principal do pipeline
-├── README.md         # Documentação do projeto
-├── requirements.txt  # Dependências do projeto
-├── data/             # Pasta para armazenar as imagens
-└── utils.py          # Funções auxiliares (opcional)
+├── main.py            # Script principal do pipeline
+├── playground.py      # Teste com uma imagem personalizada
+├── README.md          # Documentação do projeto
+├── requirements.txt   # Dependências do projeto
+├── dowload_dataset.py # Dowload do dataset
+├── create_subset.py   # Script para selecionar uma quantidade X de imagens
+└── data/              # Pasta para armazenar as imagens
 ```
 
 ## Pipeline
@@ -42,7 +44,11 @@ Atv_T2/
    ```bash
    python download_dataset.py
    ```
-3. Execute o script principal:
+3. (Opcional) Selecione um número personalizado de imagens para teste:
+   ```bash
+   python create_subset.py
+   ```
+4. Execute o script principal:
    ```bash
    python main.py
    ```
