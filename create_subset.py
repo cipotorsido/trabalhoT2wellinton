@@ -3,7 +3,7 @@ import shutil
 import random
 from glob import glob
 
-N_IMAGENS = 1000
+N_IMAGENS = 10000
 PASTA_ORIGEM = 'data/seg_train/seg_train' 
 PASTA_DESTINO = 'data_subset/train'
 

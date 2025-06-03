@@ -1,19 +1,20 @@
-# Comparação de Resultados: 500 vs 1000 Imagens
+# Comparação de Resultados: 500 vs 1000 vs 10000 Imagens
 
 ## Resumo dos Experimentos
 
-Foram realizados dois experimentos de classificação de imagens utilizando o dataset Intel Image Classification, variando a quantidade de imagens utilizadas no treinamento e validação do modelo:
+Foram realizados três experimentos de classificação de imagens utilizando o dataset Intel Image Classification, variando a quantidade de imagens utilizadas no treinamento e validação do modelo:
 
 - **Experimento 1:** 500 imagens (400 treino, 100 validação)
 - **Experimento 2:** 1000 imagens (800 treino, 200 validação)
+- **Experimento 3:** 10000 imagens (aproximadamente 8000 treino, 2000 validação)
 
 ## Resultados Obtidos
 
-| Métrica         | 500 imagens | 1000 imagens |
-|-----------------|-------------|--------------|
-| Acurácia        | 0.64        | 0.67         |
-| F1-score        | 0.62        | 0.67         |
-| Validação       | 100         | 200          |
+| Métrica         | 500 imagens | 1000 imagens | 10000 imagens |
+|-----------------|-------------|--------------|---------------|
+| Acurácia        | 0.64        | 0.67         | 0.82          |
+| F1-score        | 0.62        | 0.67         | 0.82          |
+| Validação       | 100         | 200          | 2052          |
 
 ### Relatório de Classificação (1000 imagens)
 - **Classes com melhor desempenho:**
@@ -24,7 +25,15 @@ Foram realizados dois experimentos de classificação de imagens utilizando o da
   - mountain: F1-score 0.45
   - sea: F1-score 0.56
 
+### Relatório de Classificação (10000 imagens)
+- **Classes com melhor desempenho:**
+  - forest: F1-score 0.94
+  - buildings: F1-score 0.80
+  - sea: F1-score 0.82
+- **Classes com mais dificuldade:**
+  - mountain: F1-score 0.78
+  - glacier: F1-score 0.77
 
 ## Conclusão
 
-Aumentar a quantidade de dados disponíveis para o treinamento do modelo resultou em uma melhora significativa nas métricas de avaliação. Isso reforça a importância de conjuntos de dados maiores e mais variados para tarefas de classificação de imagens em Deep Learning. 
+Aumentar a quantidade de dados disponíveis para o treinamento do modelo resultou em uma melhora significativa nas métricas de avaliação. O experimento com 10000 imagens demonstrou um ganho substancial de performance, com acurácia e F1-score atingindo 0.82, representando uma melhora de aproximadamente 15% em relação ao experimento com 1000 imagens. Isso reforça a importância de conjuntos de dados maiores e mais variados para tarefas de classificação de imagens em Deep Learning. 
